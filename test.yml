@@ -4,7 +4,7 @@
     name: "{{ new_user }}"
     state: present
 
-- name: Add User | {{ new_user }}
+ name: Add User | {{ new_user }}
   user:
     name: "{{ new_user }}"
     group: "{{ new_user }}"
