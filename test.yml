@@ -1,1 +1,6 @@
-version "3.8"
+---
+- name: Add Group | {{ new_user }}
+  group:
+     name: "{{ new_user }}"
+     state: present
+   
