@@ -1,4 +1,30 @@
 ---
- doe: "a deer, a female deer"
- ray: "a drop of golden sun"
- pi: 3.14159
+scrape_configs:
+  # -------Blackbox-and-exporter---------------------------------------------------------
+
+  - job_name: "blackbox"
+    metrics_path: /probe
+    params:
+      module: [icmp]
+    scrape_interval: 30s
+    file_sd_configs:
+       files:
+          - /mnt/operational/victoriametrics/icmp_config_baremetal.yml
+          - /mnt/operational/victoriametrics/icmp_config_cloud_hetzner.yml
+          - /mnt/operational/victoriametrics/icmp_config_cloud_upcloud.yml
+          - /mnt/operational/victoriametrics/icmp_config_cloud_equinix.yml
+          - /mnt/operational/victoriametrics/icmp_config_scaleway.yml
+          - /mnt/operational/victoriametrics/icmp_config_cloud_linode.yml
+          - /mnt/operational/victoriametrics/icmp_config_cloud_aws.yml
+          - /mnt/operational/victoriametrics/icmp_config_cloud_gmhost.yml
+          - /mnt/operational/victoriametrics/icmp_config_baremetal_ovh.yml
+          - /mnt/operational/victoriametrics/icmp_config_baremetal_worldstream.yml
+          - /mnt/operational/victoriametrics/icmp_config_cloud_ovh.yml
+          - /mnt/operational/victoriametrics/icmp_config_cloud_gcp.yml
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: s205.everstake.one:9115

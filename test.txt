@@ -1,0 +1,4 @@
+./test.yml
+  11:8      error    wrong indentation: expected 6 but found 7  (indentation)
+  12:11     error    wrong indentation: expected 9 but found 10  (indentation)
+
